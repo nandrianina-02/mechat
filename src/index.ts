@@ -1,7 +1,9 @@
 import express, { Request, Response } from "express";
 import { StreamChat } from "stream-chat";
+import cors from "cors";
 
 const app = express();
+app.use(cors()); // ✅ autorise toutes les origines
 app.use(express.json());
 
 const serverClient = StreamChat.getInstance(
