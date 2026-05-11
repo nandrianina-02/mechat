@@ -5,8 +5,8 @@ const app = express();
 app.use(express.json());
 
 const serverClient = StreamChat.getInstance(
-  "js5ujy6aed2v",
-  "kmhbemanxz7ndeh6agh3sxechvkkztqzrfmd84rw2jdsf5z4yxpqppb36wda7v9n"
+  process.env.STREAM_API_KEY!,
+  process.env.STREAM_SECRET!
 );
 
 app.post("/stream-token", async (req, res) => {
