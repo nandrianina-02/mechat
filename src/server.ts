@@ -1,4 +1,4 @@
-import express from "express";
+import express, { Request, Response } from "express";
 import { StreamChat } from "stream-chat";
 
 const app = express();
@@ -9,9 +9,12 @@ const serverClient = StreamChat.getInstance(
   process.env.STREAM_SECRET!
 );
 
-app.post("/stream-token", async (req, res) => {
+app.post("/stream-token", async (req: Request, res: Response): Promise<void> => {
   const { userId } = req.body;
-  if (!userId) return res.status(400).json({ error: "userId manquant" });
+  if (!userId) {
+    res.status(400).json({ error: "userId manquant" });
+    return;
+  }
 
   const token = serverClient.createToken(userId);
   res.json({ token });
